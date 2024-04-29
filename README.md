@@ -9,5 +9,5 @@ Rules :
 # Tutorial
 1. Install Github Desktop
 2. Login Github
-3. Clone Repository menggunakan link
-4. Cara lain untuk clone, Pergi ke Github -> pilih repository -> Github Desktop
+3. Clone Repository menggunakan link pada Github, pilih tombol code -> https -> copy link
+4. Cara lain untuk clone, Pergi ke Github -> pilih repository -> Open with Github Desktop
