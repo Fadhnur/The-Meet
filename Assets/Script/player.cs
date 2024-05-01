@@ -25,6 +25,8 @@ public class player : MonoBehaviour
 
        //inisialisasi audio
        footStepSound = GetComponent<AudioSource>();
+
+       
     }
 
     // Update is called once per frame

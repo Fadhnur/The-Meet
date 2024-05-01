@@ -8,7 +8,9 @@ public class Mainmenu : MonoBehaviour
     public void NewGame()
     {
         SceneManager.LoadSceneAsync(1);
-    }  public void menu()
+    }  
+    
+    public void Menu()
     {
         SceneManager.LoadSceneAsync(0);
     }
@@ -17,4 +19,9 @@ public class Mainmenu : MonoBehaviour
     {
         Application.Quit();
     }
+
+    private void Start() {
+        Cursor.visible = true;
+    }
+
 }

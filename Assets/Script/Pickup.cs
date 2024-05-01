@@ -10,6 +10,7 @@ public class Pickup : MonoBehaviour
     [SerializeField] private float Pickuprange;
     [SerializeField] private Transform Hand;
     [SerializeField] private GameObject pickUpUI;
+    [SerializeField] private GameObject jerigenIcon;
 
     private GameObject flashlight;
 
@@ -26,6 +27,7 @@ public class Pickup : MonoBehaviour
     {
         pickUpUI.SetActive(false);
         flashlight = GameObject.Find("Flashlight");
+        jerigenIcon.SetActive(false);
     }
 
     // Update is called once per frame
@@ -68,9 +70,11 @@ public class Pickup : MonoBehaviour
 
                         CurrentObjectRigidbody.isKinematic = true;
                         CurrentObjectCollider.enabled = false;
+
                     }
                 }
 
+                
                 else
                 {
                     Debug.Log("Press E Object");
