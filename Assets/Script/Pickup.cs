@@ -113,6 +113,7 @@ public class Pickup : MonoBehaviour
             }
         }
 
+        //melempar objek
         if (Input.GetKeyDown(KeyCode.Q))
         {
             if (CurrentObjectRigidbody)

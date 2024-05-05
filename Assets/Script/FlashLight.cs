@@ -97,8 +97,10 @@ public class FlashLight : MonoBehaviour
         {
             Debug.Log("R Pressed");
             return;
+            //notif ui baterai tidak ada
         }
 
+        //Jika banyak baterai dibawah 0 maka dianggap 0
         /*
         if (batteries <= 0)
         {

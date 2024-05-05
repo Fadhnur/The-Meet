@@ -49,11 +49,11 @@ public class KayuBakar : MonoBehaviour
     void OnCollisionEnter(Collision other)
     {
         //Membakar item dengan tag burn seperti item sesembahan
-        if (other.gameObject.tag == "Burn")
+        if (other.gameObject.tag == "Burn" && unlit == false)
         {
             Destroy(other.gameObject);
-            GameObject explision = Instantiate(api, transform.position, transform.rotation);
-            Destroy(explision, 0.75f);
+            GameObject explosion = Instantiate(api, transform.position, transform.rotation);
+            Destroy(explosion, 0.75f);
             Debug.Log("burn");
         }
 
