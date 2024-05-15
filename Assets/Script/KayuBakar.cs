@@ -5,7 +5,7 @@ using UnityEngine;
 public class KayuBakar : MonoBehaviour
 {
     public GameObject korekApi;
-    public GameObject api;
+    public GameObject apiKayu;
     public GameObject lightText;
 
     public bool unlit;
@@ -17,7 +17,7 @@ public class KayuBakar : MonoBehaviour
     void Start()
     {
         unlit = true;
-        api.SetActive(false);
+        apiKayu.SetActive(false);
         lightText.SetActive(false);
         wet = false;
     }
@@ -52,7 +52,7 @@ public class KayuBakar : MonoBehaviour
         if (other.gameObject.tag == "Burn")
         {
             Destroy(other.gameObject);
-            GameObject explision = Instantiate(api, transform.position, transform.rotation);
+            GameObject explision = Instantiate(apiKayu, transform.position, transform.rotation);
             Destroy(explision, 0.75f);
             Debug.Log("burn");
         }
@@ -67,10 +67,10 @@ public class KayuBakar : MonoBehaviour
 
     void Update()
     {
-        //Apabila korek api menyala dan telah diberi minyak
+        //Apabila korek apiKayu menyala dan telah diberi minyak
         if (korekApi.activeInHierarchy && inReach && unlit && Input.GetKeyDown(KeyCode.E) && wet)      //mendeteksi korek telah menyala, pemain menekan tombol E
         {
-            api.SetActive(true);
+            apiKayu.SetActive(true);
             lightText.SetActive(false);
             unlit = false;
             Destroy(korekApi);

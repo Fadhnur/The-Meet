@@ -52,5 +52,5 @@
         "Temp/": true
     },
     "dotnet.preferCSharpExtension": true,
-    "dotnet.defaultSolution": "The Meet.sln"
+    "dotnet.defaultSolution": "The-Meet-Github.sln"
 }

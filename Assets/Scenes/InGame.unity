@@ -3571,22 +3571,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!54 &217500173
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 217500168}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 80
-  m_CollisionDetection: 0
 --- !u!95 &217500174
 Animator:
   serializedVersion: 5
@@ -11617,7 +11601,7 @@ MonoBehaviour:
   m_text: "Apply\n   [E]"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2629ad7cedd64514e96e5f74b6352c57, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 1526523662712917642, guid: 2629ad7cedd64514e96e5f74b6352c57, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -11641,8 +11625,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 91.9
+  m_fontSizeBase: 91.9
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -11680,7 +11664,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &791697692
@@ -13722,7 +13706,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -21943,7 +21927,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 5, y: 5}
+  m_SizeDelta: {x: 15.304, y: 15.304}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1505234365
 MonoBehaviour:
@@ -25415,6 +25399,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 5900d2b7f242d94468040c38fa4f3eeb, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5900d2b7f242d94468040c38fa4f3eeb, type: 3}
       propertyPath: m_Name
       value: Jerigen (1)
@@ -25425,7 +25413,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5900d2b7f242d94468040c38fa4f3eeb, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5900d2b7f242d94468040c38fa4f3eeb, type: 3}
       propertyPath: m_TagString
@@ -27392,11 +27380,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53317f1dde8976f47854281e602350ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
-  isGrounded: 1
+  speed: 10
+  isGrounded: 0
   rb: {fileID: 1968457934}
   footStepSound: {fileID: 1968457931}
-  footStepInterval: 0.01
+  footStepInterval: 0.1
 --- !u!136 &1968457924
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -27609,7 +27597,7 @@ MonoBehaviour:
   Pickuprange: 5
   Hand: {fileID: 1768421543}
   pickUpUI: {fileID: 1544873098}
-  jerigenIcon: {fileID: 0}
+  jerigenIcon: {fileID: 900960203}
   hitRange: 5
 --- !u!1 &1973066754
 GameObject:
@@ -28172,7 +28160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   korekApi: {fileID: 834931607}
-  api: {fileID: 1763124670}
+  apiKayu: {fileID: 1763124670}
   lightText: {fileID: 981291079}
   unlit: 0
   inReach: 0
