@@ -73,10 +73,10 @@ public class player : MonoBehaviour
             isGrounded = true;
         }
 
-        /*if (other.collider.tag == "Tembok")
+        if (other.collider.tag == "Tembok")
         {
             GetComponent<Rigidbody>().velocity = Vector3.zero;
-        }*/
+        }
     }
 
     void OnCollisionExit(Collision other)

@@ -2,13 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 public class Mainmenu : MonoBehaviour
 {
+    public VideoPlayer videoPlayer;
+    public GameObject loadingVP;
+
     public void NewGame()
     {
-        SceneManager.LoadSceneAsync(1);
+        loadingVP.SetActive(true);
+
+        // Menghubungkan event saat video selesai diputar
+        videoPlayer.loopPointReached += OnVideoEnd;
+        videoPlayer.Play();
     }  
+
+    // Method yang dipanggil saat video selesai diputar
+    private void OnVideoEnd(VideoPlayer vp)
+    {
+        // Memuat scene berikutnya setelah video selesai diputar
+        SceneManager.LoadScene(1);
+    }
     
     public void Menu()
     {
@@ -22,6 +37,7 @@ public class Mainmenu : MonoBehaviour
 
     private void Start() {
         Cursor.visible = true;
+        loadingVP.SetActive(false);
     }
 
 }
