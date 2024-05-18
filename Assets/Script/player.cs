@@ -17,6 +17,7 @@ public class player : MonoBehaviour
 
     public AudioSource footStepSound;
     public float footStepInterval = 0.1f;
+    private float footStepTimer;
 
     void Start()
     {
@@ -35,7 +36,11 @@ public class player : MonoBehaviour
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
         moveDirection = new Vector3(horizontal, 0, vertical);
-        transform.Translate(moveDirection * speed * Time.deltaTime); 
+
+        //Cek apakah karakter berada di tanah dengan Raycast
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, 1.1f);
+
+        //transform.Translate(moveDirection * speed * Time.deltaTime); 
 
         //Berjalan
         if(moveDirection.magnitude > 0 && isGrounded)
@@ -49,33 +54,55 @@ public class player : MonoBehaviour
             //isGrounded = true;
         }*/
 
+        // Melompat
+        /*if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }*/
+
         //Berlari
-        if(Input.GetKey(KeyCode.LeftShift)&& isGrounded){
-            transform.position += transform.forward * Time.deltaTime * speed;
+        // if(Input.GetKey(KeyCode.LeftShift)&& isGrounded){
+        //     transform.position += transform.forward * Time.deltaTime * speed;
+        // }
+
+        // Berlari
+        if (Input.GetKey(KeyCode.LeftShift) && isGrounded)
+        {
+            moveDirection *= 1.5f;
         }
         
 
     }
 
+    void FixedUpdate()
+    {
+        if (isGrounded)
+        {
+            Vector3 move = transform.right * horizontal + transform.forward * vertical;
+            rb.MovePosition(rb.position + move * speed * Time.fixedDeltaTime);
+        }
+    }
+
     void PlayFootStepSound()
     {
-        if(!footStepSound.isPlaying)
+        footStepTimer -= Time.deltaTime;
+        if (!footStepSound.isPlaying && footStepTimer <= 0)
         {
             footStepSound.Play();
-            Invoke("PlayFootStepSound", footStepInterval);
+            footStepTimer = footStepInterval;
         }
     }
 
     void OnCollisionEnter(Collision other)
     {
-        if(other.gameObject.tag == "Ground")
+        if (other.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
         }
 
-        if (other.collider.tag == "Tembok")
+        if (other.collider.CompareTag("Tembok"))
         {
-            GetComponent<Rigidbody>().velocity = Vector3.zero;
+            rb.velocity = Vector3.zero;
         }
     }
 

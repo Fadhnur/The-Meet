@@ -9,8 +9,6 @@ using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 
-
-
 public class AIGhost : MonoBehaviour
 
 {
@@ -37,6 +35,8 @@ public class AIGhost : MonoBehaviour
     public Vector3 rayCastOffset;
 
     public string deathScene;
+
+    public AudioSource jumpscareSFX;
 
     void Start(){
         walking = true;
@@ -113,6 +113,7 @@ public class AIGhost : MonoBehaviour
         aiAnim.SetTrigger("walk");
     }
     IEnumerator deathRoutine(){
+        jumpscareSFX.Play();
         yield return new WaitForSeconds(jumpscareTime);
         SceneManager.LoadScene(deathScene);
     }

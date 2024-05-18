@@ -385,6 +385,7 @@
 "Assets/Rocks and Boulders 2/Shaders/RotateGameObject.cs"
 "Assets/Script/AIGhost.cs"
 "Assets/Script/AIRandomMove.cs"
+"Assets/Script/AudioController.cs"
 "Assets/Script/bakarKayu.cs"
 "Assets/Script/DestroyFX.cs"
 "Assets/Script/EnemyFollow.cs"

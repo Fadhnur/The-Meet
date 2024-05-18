@@ -10,6 +10,7 @@ public class JumpscareTrigger : MonoBehaviour
     public GameObject jumpScareObject; // Objek atau efek yang memicu jumpscare
 
     private bool jumpScareActivated = false; // Apakah jumpscare sudah diaktifkan
+    public AudioSource jumpscareSFX;
 
     void Update()
     {
@@ -29,7 +30,7 @@ public class JumpscareTrigger : MonoBehaviour
         jumpScareObject.SetActive(true);
 
         // Tambahkan logika lain sesuai kebutuhan, misalnya suara, getaran, atau animasi
-
+        jumpscareSFX.Play();
         jumpScareActivated = true; // Setel jumpscare sebagai sudah diaktifkan
     }
 }
