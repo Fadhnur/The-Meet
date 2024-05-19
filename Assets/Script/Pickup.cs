@@ -12,8 +12,6 @@ public class Pickup : MonoBehaviour
     [SerializeField] private GameObject pickUpUI;
     [SerializeField] private GameObject jerigenIcon;
 
-    private GameObject flashlight;
-
     private Rigidbody CurrentObjectRigidbody;
     private Collider CurrentObjectCollider;
 
@@ -26,7 +24,6 @@ public class Pickup : MonoBehaviour
     void Start()
     {
         pickUpUI.SetActive(false);
-        flashlight = GameObject.Find("Flashlight");
         jerigenIcon.SetActive(false);
     }
 
@@ -35,72 +32,34 @@ public class Pickup : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
+            Debug.Log("Press E Object");
             //Membuat sebuah ray dari posisi kamera pemain ke arah yang dituju dan memeriksa apakah ada tabrakan (collision) dengan objek dalam jarak pengambilan yang ditentukan.
             Ray Pickupray = new Ray(PlayerCamera.transform.position, PlayerCamera.transform.forward);
             if (Physics.Raycast(Pickupray, out RaycastHit hitinfo, Pickuprange, PickupLayer))
             {
                 Debug.Log("hitRaycast");
-                if (hitinfo.collider.CompareTag("Battery"))
+                if (CurrentObjectRigidbody)
                 {
-                    Debug.Log("Battery Pressed");
+                    CurrentObjectRigidbody.isKinematic = false;
+                    CurrentObjectCollider.enabled = true;
 
-                    // Mengubah jumlah baterai pada flashlight
-                    //flashlight.GetComponent<FlashLight>().batteries += 1;
+                    CurrentObjectRigidbody = hitinfo.rigidbody;
+                    CurrentObjectCollider = hitinfo.collider;
 
-                    // Menghapus objek baterai yang telah diambil
-                    Destroy(hitinfo.collider.gameObject);
-
-                    if (CurrentObjectRigidbody)
-                    {
-
-                        CurrentObjectRigidbody.isKinematic = false;
-                        CurrentObjectCollider.enabled = true;
-
-                        CurrentObjectRigidbody = hitinfo.rigidbody;
-                        CurrentObjectCollider = hitinfo.collider;
-
-                        CurrentObjectRigidbody.isKinematic = true;
-                        CurrentObjectCollider.enabled = false;
-
-                    }
-                    else
-                    {
-                        CurrentObjectRigidbody = hitinfo.rigidbody;
-                        CurrentObjectCollider = hitinfo.collider;
-
-                        CurrentObjectRigidbody.isKinematic = true;
-                        CurrentObjectCollider.enabled = false;
-
-                    }
+                    CurrentObjectRigidbody.isKinematic = true;
+                    CurrentObjectCollider.enabled = false;
                 }
 
-                
                 else
                 {
-                    Debug.Log("Press E Object");
-                    if (CurrentObjectRigidbody)
-                    {
-                        CurrentObjectRigidbody.isKinematic = false;
-                        CurrentObjectCollider.enabled = true;
+                    CurrentObjectRigidbody = hitinfo.rigidbody;
+                    CurrentObjectCollider = hitinfo.collider;
 
-                        CurrentObjectRigidbody = hitinfo.rigidbody;
-                        CurrentObjectCollider = hitinfo.collider;
-
-                        CurrentObjectRigidbody.isKinematic = true;
-                        CurrentObjectCollider.enabled = false;
-                    }
-                    else
-                    {
-                        CurrentObjectRigidbody = hitinfo.rigidbody;
-                        CurrentObjectCollider = hitinfo.collider;
-
-                        CurrentObjectRigidbody.isKinematic = true;
-                        CurrentObjectCollider.enabled = false;
-                    }
-
-                    return;
+                    CurrentObjectRigidbody.isKinematic = true;
+                    CurrentObjectCollider.enabled = false;
                 }
 
+                return;
             }
 
             if (CurrentObjectRigidbody)

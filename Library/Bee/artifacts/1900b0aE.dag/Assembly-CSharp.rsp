@@ -387,6 +387,7 @@
 "Assets/Script/AIRandomMove.cs"
 "Assets/Script/AudioController.cs"
 "Assets/Script/bakarKayu.cs"
+"Assets/Script/BatteryPickUp.cs"
 "Assets/Script/DestroyFX.cs"
 "Assets/Script/EnemyFollow.cs"
 "Assets/Script/FlashLight.cs"

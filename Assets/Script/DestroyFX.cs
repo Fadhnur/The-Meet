@@ -10,7 +10,7 @@ public class DestroyFX : MonoBehaviour
     {
         if(other.gameObject.tag == "Burn")
         {
-            Destroy(gameObject);
+            Destroy(other.gameObject);
             GameObject explision = Instantiate(obj, transform.position, transform.rotation);
             Destroy(explision, 0.75f);
         }

@@ -7,6 +7,8 @@ public class KayuBakar : MonoBehaviour
     public GameObject korekApi;
     public GameObject api;
     public GameObject lightText;
+    public GameObject lightFire;
+    public AudioSource lightSFX;
 
     public bool unlit;
     public bool inReach;
@@ -20,6 +22,7 @@ public class KayuBakar : MonoBehaviour
         api.SetActive(false);
         lightText.SetActive(false);
         wet = false;
+        lightFire.SetActive(false);
     }
 
     //Mendeteksi pohon 
@@ -51,9 +54,13 @@ public class KayuBakar : MonoBehaviour
         //Membakar item dengan tag burn seperti item sesembahan
         if (other.gameObject.tag == "Burn" && unlit == false)
         {
+             // Mendapatkan posisi dan rotasi dari objek yang terbakar
+            Vector3 burnPosition = other.transform.position;
+            Quaternion burnRotation = other.transform.rotation;
+
             Destroy(other.gameObject);
-            //tidak terdeteksi
-            GameObject explosion = Instantiate(api, transform.position, transform.rotation);
+            //tidak terdeteksi (error)
+            GameObject explosion = Instantiate(api, burnPosition, burnRotation);
             Destroy(explosion, 0.75f);
             Debug.Log("burn");
         }
@@ -72,6 +79,8 @@ public class KayuBakar : MonoBehaviour
         if (korekApi.activeInHierarchy && inReach && unlit && Input.GetKeyDown(KeyCode.E) && wet)      //mendeteksi korek telah menyala, pemain menekan tombol E
         {
             api.SetActive(true);
+            lightSFX.Play();
+            lightFire.SetActive(true);
             lightText.SetActive(false);
             unlit = false;
             Destroy(korekApi);

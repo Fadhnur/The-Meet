@@ -7,6 +7,7 @@ public class ReadNote : MonoBehaviour
     public GameObject player;
     public GameObject note;
     //public GameObject HUD;  //tampilan pada layar pemain
+    public GameObject midDot;
     public bool inReach;
 
     public GameObject pickUpText;
@@ -20,6 +21,7 @@ public class ReadNote : MonoBehaviour
         pickUpText.SetActive(false);
         note.SetActive(false);
         //HUD.SetActive(true);
+        midDot.SetActive(true);
 
         inReach = false;
     }
@@ -54,17 +56,19 @@ public class ReadNote : MonoBehaviour
             note.SetActive(true);       //Note muncul pada layar
             //pickUpSound.SetActive(true);      //suara pickUp aktif
             //HUD.SetActive(false);
+            midDot.SetActive(false);
 
             player.GetComponent<player>().enabled = false;      //karakter tidak bisa bergerak / script player dimatikan
             //Cursor.visible = true;      //memunculkan kursor
             //Cursor.lockState = CursorLockMode.None;     //kursor dapat digerakkan
         }
 
-        else if(Input.GetKeyDown(KeyCode.Escape) && inReach)
+        else if(Input.GetKeyDown(KeyCode.X) && inReach)
         {
             note.SetActive(false);
             player.GetComponent<player>().enabled = true;       //karakter dapat bergerak kembali
             //HUD.SetActive(true);
+            midDot.SetActive(true);
 
         }
     }

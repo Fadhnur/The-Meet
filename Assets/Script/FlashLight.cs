@@ -11,7 +11,9 @@ public class FlashLight : MonoBehaviour
 
     public Image percent;
 
-    public float lifetime, MaxLifetime = 100;
+    public TMP_Text batteryText;
+
+    public float lifetime,batteries, MaxLifetime = 100;
 
     public AudioSource flashON;
     public AudioSource flashOFF;
@@ -44,6 +46,8 @@ public class FlashLight : MonoBehaviour
 
     void Update()
     {
+        //Indikator jumlah baterai
+        batteryText.text = batteries.ToString();
 
         //Menyalakan senter menekan tombol F dalam keadaan mati
         if (Input.GetKeyDown(KeyCode.F) && off)
@@ -86,14 +90,14 @@ public class FlashLight : MonoBehaviour
         }
 
         //Recharge baterai
-        if (Input.GetKeyDown(KeyCode.R))    //&& batteries >= 1
+        if (Input.GetKeyDown(KeyCode.R) && batteries >= 1)    //&& batteries >= 1
         {
             Debug.Log("R Pressed");
-            //batteries -= 1;
+            batteries -= 1;
             lifetime += 100;
         }
 
-        if (Input.GetKeyDown(KeyCode.R))    //&& batteries == 0
+        if (Input.GetKeyDown(KeyCode.R) && batteries == 0)    //&& batteries == 0
         {
             Debug.Log("R Pressed");
             return;
@@ -101,12 +105,11 @@ public class FlashLight : MonoBehaviour
         }
 
         //Jika banyak baterai dibawah 0 maka dianggap 0
-        /*
         if (batteries <= 0)
         {
             batteries = 0;
         }
-        */
+        
 
         FlashlightFiller();
 
