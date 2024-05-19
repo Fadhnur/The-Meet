@@ -16,6 +16,7 @@ public class SanityManager : MonoBehaviour
 
     public PostProcessProfile profile;
     Vignette vignette;
+    DepthOfField depthOfField;
     public string deathScene;
 
     // Start is called before the first frame update
@@ -24,6 +25,7 @@ public class SanityManager : MonoBehaviour
         flashlight = GameObject.Find("Flashlight");
         //Menampilkan ui slider untuk sanity
         profile.TryGetSettings(out vignette);
+        profile.TryGetSettings(out depthOfField);
 
         sanitySlider = GetComponent<Slider>();
         sanitySlider.maxValue = fullSanity;
@@ -32,7 +34,7 @@ public class SanityManager : MonoBehaviour
         //currentSanity = fullSanity;
 
         vignette.intensity.value = 0;
-
+        depthOfField.active = false;    // Mulai dengan Depth of Field tidak aktif
 
         //StartCoroutine(LoseSanity());
     }
@@ -74,8 +76,19 @@ public class SanityManager : MonoBehaviour
             percent = newValue / sanitySlider.maxValue;
             vignette.intensity.value = percent;
 
+            // Aktifkan efek blur berdasarkan sanity
+            if (depthOfField != null)
+            {
+                depthOfField.active = true;
+                depthOfField.aperture.value = Mathf.Lerp(32f, 1.4f, percent);
+                depthOfField.focalLength.value = Mathf.Lerp(300f, 50f, percent);
+            }
+
             yield return null;
         }
+        // Hentikan semua coroutine yang mungkin berjalan
+        StopAllCoroutines();
+        // Pindah ke death scene segera setelah sanity habis
         SceneManager.LoadScene(deathScene);
 
         /*while (currentSanity > 0)
@@ -94,5 +107,11 @@ public class SanityManager : MonoBehaviour
     {
         sanitySlider.value += value;
         Debug.Log("Sanity incrased by : " + value);
+
+         // Matikan efek blur jika sanity sudah penuh
+        if (sanitySlider.value == sanitySlider.maxValue)
+        {
+            depthOfField.active = false;
+        }
     }
 }

@@ -61,15 +61,15 @@ public class player : MonoBehaviour
         }*/
 
         //Berlari
-        // if(Input.GetKey(KeyCode.LeftShift)&& isGrounded){
-        //     transform.position += transform.forward * Time.deltaTime * speed;
-        // }
+        if(Input.GetKey(KeyCode.LeftShift)&& isGrounded){
+            transform.position += transform.forward * Time.deltaTime * speed;
+        }
 
         // Berlari
-        if (Input.GetKey(KeyCode.LeftShift) && isGrounded)
-        {
-            moveDirection *= 1.5f;
-        }
+        // if (Input.GetKey(KeyCode.LeftShift) && isGrounded)
+        // {
+        //     moveDirection *= 1.5f;
+        // }
         
 
     }

@@ -36,7 +36,10 @@ public class Mainmenu : MonoBehaviour
     }
 
     private void Start() {
+        //Menampilkan cursor pada layar
         Cursor.visible = true;
+        //Agar cursor tidak terkunci di tengah layar
+        Cursor.lockState = CursorLockMode.None;
         loadingVP.SetActive(false);
     }
 

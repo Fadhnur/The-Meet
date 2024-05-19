@@ -52,6 +52,7 @@ public class KayuBakar : MonoBehaviour
         if (other.gameObject.tag == "Burn" && unlit == false)
         {
             Destroy(other.gameObject);
+            //tidak terdeteksi
             GameObject explosion = Instantiate(api, transform.position, transform.rotation);
             Destroy(explosion, 0.75f);
             Debug.Log("burn");
