@@ -17,6 +17,12 @@ public class SanityManager : MonoBehaviour
     public PostProcessProfile profile;
     Vignette vignette;
     DepthOfField depthOfField;
+    public GameObject kunti; // Objek yang memiliki animasi jumpscare
+    public Transform playerCamera; // Transform dari kamera pemain
+    public float jumpscareDuration = 1.0f; // Durasi jumpscare dalam detik
+
+    private bool isJumpscaring = false;
+    public AudioSource jumpscareSFX;
     public string deathScene;
 
     // Start is called before the first frame update
@@ -84,6 +90,12 @@ public class SanityManager : MonoBehaviour
                 depthOfField.focalLength.value = Mathf.Lerp(300f, 50f, percent);
             }
 
+            // Cek sanity dan tampilkan jumpscare jika kurang dari 1000
+            if (sanitySlider.value < 10000 && !isJumpscaring)
+            {
+                StartCoroutine(TriggerJumpscare());
+            }
+
             yield return null;
         }
         // Hentikan semua coroutine yang mungkin berjalan
@@ -113,5 +125,35 @@ public class SanityManager : MonoBehaviour
         {
             depthOfField.active = false;
         }
+    }
+
+    private IEnumerator TriggerJumpscare()
+    {
+        isJumpscaring = true;
+
+        if (kunti != null)
+        {
+            kunti.SetActive(true); // Aktifkan objek kunti
+
+            // Tempatkan kunti di depan kamera pemain
+            kunti.transform.position = playerCamera.position + playerCamera.forward * 2.0f; // Sesuaikan jarak sesuai keinginan
+            kunti.transform.LookAt(playerCamera); // Pastikan kunti menghadap ke kamera pemain
+
+            Animator kuntiAnimator = kunti.GetComponent<Animator>();
+            if (kuntiAnimator != null)
+            {
+                kuntiAnimator.SetTrigger("jumpscare"); // Pastikan Anda memiliki trigger "PlayJumpscare" di Animator
+                jumpscareSFX.Play();
+            }
+        }
+
+        yield return new WaitForSeconds(jumpscareDuration);
+
+        if (kunti != null)
+        {
+            kunti.SetActive(false); // Sembunyikan kunti setelah jumpscare
+        }
+
+        isJumpscaring = false;
     }
 }
