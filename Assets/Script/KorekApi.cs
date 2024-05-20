@@ -11,23 +11,31 @@ public class KorekApi : MonoBehaviour
 
     public bool isOn;
 
+    private Pickup pickupScript; // Referensi ke skrip Pickup
+
     void Start()
     {
         isOn = false;
         api.SetActive(false);
+
+        // Mendapatkan referensi ke skrip Pickup
+        pickupScript = FindObjectOfType<Pickup>();
     }
 
 
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") && korekApi.activeInHierarchy)     //mouse klik kiri
+        //Mendapatkan objek yang sedang dipegang oleh pemain
+        GameObject heldObject = pickupScript.GetHeldObject();
+
+        if (Input.GetButtonDown("Fire1") && korekApi.activeInHierarchy && heldObject != null && heldObject.CompareTag("Fire"))     //mouse klik kiri
         {
             api.SetActive(true);
             lighterSound.Play();
             isOn = true;
         }
 
-        else if (Input.GetButtonDown("Fire1") && isOn)
+        else if (Input.GetButtonDown("Fire1") && isOn && heldObject != null && heldObject.CompareTag("Fire"))
         {
             return;
         }

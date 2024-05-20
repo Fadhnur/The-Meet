@@ -106,7 +106,7 @@ public class SanityManager : MonoBehaviour
     public void Affectsanity(float value)
     {
         sanitySlider.value += value;
-        Debug.Log("Sanity incrased by : " + value);
+        // Debug.Log("Sanity incrased by : " + value);
 
          // Matikan efek blur jika sanity sudah penuh
         if (sanitySlider.value == sanitySlider.maxValue)

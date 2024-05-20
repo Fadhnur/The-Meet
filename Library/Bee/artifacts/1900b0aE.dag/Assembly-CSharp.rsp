@@ -391,6 +391,7 @@
 "Assets/Script/DestroyFX.cs"
 "Assets/Script/EnemyFollow.cs"
 "Assets/Script/FlashLight.cs"
+"Assets/Script/FlashlightSway.cs"
 "Assets/Script/FreezeCamera.cs"
 "Assets/Script/Highlight.cs"
 "Assets/Script/JumpscareTrigger.cs"
